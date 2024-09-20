@@ -1,0 +1,41 @@
+nameOverride: ""
+
+ollama:
+  enabled: false
+
+pipelines:
+  enabled: false
+
+# -- A list of Ollama API endpoints. These can be added in lieu of automatically installing the Ollama Helm chart, or in addition to it.
+ollamaUrls: ["http://ollama:11434"]
+
+replicaCount: 1
+# -- Open WebUI image tags can be found here: https://github.com/open-webui/open-webui/pkgs/container/open-webui
+image:
+  repository: ghcr.io/open-webui/open-webui
+  tag: ""
+  pullPolicy: "IfNotPresent"
+
+ingress:
+  enabled: false
+  class: ""
+  # -- Use appropriate annotations for your Ingress controller, e.g., for NGINX:
+  # nginx.ingress.kubernetes.io/rewrite-target: /
+  annotations: {}
+  host: ""
+  tls: false
+  existingSecret: ""
+persistence:
+  enabled: true
+  size: 2Gi
+  storageClass: "longhorn"
+
+# -- Service values to expose Open WebUI pods to cluster
+service:
+  type: ClusterIP
+  annotations: {}
+  port: 80
+  containerPort: 8080
+  nodePort: ""
+  labels: {}
+  loadBalancerClass: ""

@@ -1,0 +1,27 @@
+machine:
+  network:
+    kubespan:
+      enabled: true
+  kubelet:
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+  install:
+    image: factory.talos.dev/installer/88d1f7a5c4f1d3aba7df787c448c1d3d008ed29cfb34af53fa0df4336a56040b:v1.7.6
+cluster:
+  apiServer:
+    admissionControl:
+      - name: PodSecurity
+        configuration:
+          defaults:
+            audit: privileged
+            audit-version: latest
+            enforce: privileged
+            enforce-version: latest
+            warn: privileged
+            warn-version: latest

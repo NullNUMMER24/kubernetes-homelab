@@ -1,0 +1,13 @@
+ollama:
+  gpu:
+    enabled: true
+ingress:
+  hosts:
+    - host: 
+  className: nginx
+  enabled: false
+persistentVolume:
+  enabled: true
+  storageClass: longhorn
+  size: 80Gi
+runtimeClassName: nvidia
